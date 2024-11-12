@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "vercel_function.py",
-      "use": "@vercel/python"
+      "src": "nowon/asgi.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxDuration": 10
+      }
     }
   ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "vercel_function.py"
-    }
-  ]
+  "env": {
+    "DJANGO_SETTINGS_MODULE": "nowon.settings"
+  }
 }
