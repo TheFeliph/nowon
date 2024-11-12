@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, render
 from django import forms
 from django.http import JsonResponse
+from django.core.management import call_command
 
 class PostForm(forms.Form):
     content = forms.CharField(max_length=280)
@@ -39,3 +40,8 @@ def nowonfeed_view(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+def run_migrations():
+    call_command('migrate')
+
+run_migrations()
