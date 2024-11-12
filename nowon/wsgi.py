@@ -1,5 +1,5 @@
 """
-WSGI config for now_on project.
+WSGI config for nowon project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,7 +11,7 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'now_on.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'nowon.settings')
 
 application = get_wsgi_application()
 app = application 
