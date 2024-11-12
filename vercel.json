@@ -10,9 +10,7 @@
     {
       "src": "/now_on/wsgi.py",
       "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "15mb"
-      }
+      "config": { "maxLambdaSize": "15mb" }
     }
   ],
   
@@ -21,15 +19,10 @@
       "src": "/(.*)",
       "dest": "now_on/wsgi.py"
     },
+    
     {
       "src": "/static/(.*)",
       "dest": "/static/$1"
     }
-  ],
-  
-  "build": {
-    "commands": [
-      "python manage.py collectstatic --noinput"
-    ]
-  }
+  ]
 }
