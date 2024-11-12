@@ -90,7 +90,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'nowon.wsgi.app'
+WSGI_APPLICATION = 'nowon.wsgi.application'
 
 
 # Database
