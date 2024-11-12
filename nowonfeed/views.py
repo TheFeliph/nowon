@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.shortcuts import redirect, render
 from django import forms
 from django.http import JsonResponse
@@ -7,15 +7,26 @@ from django.core.management import call_command
 class PostForm(forms.Form):
     content = forms.CharField(max_length=280)
 
+def run_migrations():
+    call_command('migrate')
+
+run_migrations()
+
+User = get_user_model()
+if not User.objects.filter(username='user').exists():
+    User.objects.create_user(username='user', password='user')
+
 def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
+        
         if username == 'user' and password == 'user':
             user = authenticate(request, username=username, password=password)
             if user:
                 login(request, user)
                 return redirect('nowonfeed')
+        
     return render(request, 'nowonfeed/login.html')
 
 def nowonfeed_view(request):
@@ -40,8 +51,3 @@ def nowonfeed_view(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
-
-def run_migrations():
-    call_command('migrate')
-
-run_migrations()
