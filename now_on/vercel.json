@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "nowon/asgi.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxDuration": 10
+      }
+    }
+  ],
+  "env": {
+    "DJANGO_SETTINGS_MODULE": "nowon.settings"
+  }
+}
