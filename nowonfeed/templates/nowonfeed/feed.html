@@ -29,12 +29,12 @@
             <h1>Bem-vindo ao NowOn</h1>
             
             <div class="tweet-box">
-                <form method="post">
+                <form method="post" action="{% url 'nowonfeed' %}">
                     {% csrf_token %}
-                    <textarea name="content" placeholder="O que está acontecendo?"></textarea>
+                    <textarea name="content" placeholder="O que está acontecendo?" required></textarea>
                     <button type="submit">Tweetar</button>
                 </form>
-            </div>
+            </div>            
 
             <div>
                 <h2>Feed</h2>
