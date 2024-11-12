@@ -3,7 +3,10 @@ from django.shortcuts import redirect, render
 from django import forms
 from django.http import JsonResponse
 from django.core.management import call_command
+from django.http import HttpResponse
+from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
+import git
 
 def run_migrations():
     call_command('migrate')
@@ -59,3 +62,19 @@ def nowonfeed_view(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+@csrf_exempt
+def update(request):
+    if request.method == "POST":
+        '''
+        pass the path of the diectory where your project will be
+        stored on PythonAnywhere in the git.Repo() as parameter.
+        Here the name of my directory is "test.pythonanywhere.com"
+        '''
+        repo = git.Repo('/home/piegez/nowon')
+        origin = repo.remotes.origin
+
+        origin.pull()
+        return HttpResponse("Updated code on PythonAnywhere")
+    else:
+        return HttpResponse("Couldn't update the code on PythonAnywhere")

@@ -24,4 +24,5 @@ urlpatterns = [
     path('', views.login_view, name='login'),
     path('nowonfeed/', views.nowonfeed_view, name='nowonfeed'),
     path('logout/', views.logout_view, name='logout'),
+    path("update_server/", views.update, name="update"),
 ]
