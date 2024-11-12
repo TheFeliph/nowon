@@ -42,8 +42,7 @@ def nowonfeed_view(request):
     posts = request.session.get('posts', [])
 
     if request.method == 'POST':
-        
-        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':  
             content = request.POST.get('content')
             if content:
                 posts.insert(0, content)
@@ -51,7 +50,7 @@ def nowonfeed_view(request):
                 return JsonResponse({'new_post': content, 'username': request.user.username})
             else:
                 return JsonResponse({'error': 'Invalid content'}, status=400)
-        
+
         form = PostForm(request.POST)
         if form.is_valid():
             new_post = form.cleaned_data['content']
