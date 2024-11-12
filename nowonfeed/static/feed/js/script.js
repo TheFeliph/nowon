@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(response => response.json())
                 .then(data => {
                     if (data.new_post) {
-                        // Após enviar o tweet, recarregamos a página para mostrar o novo tweet
-                        location.reload(); // Isso vai recarregar a página
+
+                        location.reload(); 
                     } else if (data.error) {
                         console.error('Error:', data.error);
                     }
