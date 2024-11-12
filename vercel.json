@@ -13,11 +13,13 @@
       "config": { "maxLambdaSize": "15mb" }
     }
   ],
+  
   "routes": [
     {
       "src": "/(.*)",
       "dest": "now_on/wsgi.py"
     },
+    
     {
       "src": "/static/(.*)",
       "dest": "/static/$1"
