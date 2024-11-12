@@ -5,23 +5,18 @@ from django.http import JsonResponse
 from django.core.management import call_command
 from django.views.decorators.csrf import csrf_exempt
 
-# Função para rodar as migrações
 def run_migrations():
     call_command('migrate')
 
-# Executa as migrações automaticamente
 run_migrations()
 
-# Criação do usuário padrão 'user' caso não exista
 User = get_user_model()
 if not User.objects.filter(username='user').exists():
     User.objects.create_user(username='user', password='user')
 
-# Formulário para os posts
 class PostForm(forms.Form):
     content = forms.CharField(max_length=280)
 
-# View de login
 def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -35,7 +30,6 @@ def login_view(request):
         
     return render(request, 'nowonfeed/login.html')
 
-# View para o feed
 @csrf_exempt
 def nowonfeed_view(request):
     if not request.user.is_authenticated:
@@ -45,7 +39,7 @@ def nowonfeed_view(request):
     posts = request.session.get('posts', [])
 
     if request.method == 'POST':
-        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':  # Verifica se é uma requisição AJAX
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
             content = request.POST.get('content')
             if content:
                 posts.insert(0, content)
@@ -62,7 +56,6 @@ def nowonfeed_view(request):
 
     return render(request, 'nowonfeed/feed.html', {'form': form, 'posts': posts})
 
-# View para logout
 def logout_view(request):
     logout(request)
     return redirect('login')
