@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-#cm8^!rb3vgrqcw!q5d565^g(9@34yq_ccoxdv7p1i6sr*7)av'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['piegez.pythonanywhere.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -48,7 +48,7 @@ AUTHENTICATION_BACKENDS = [
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'nowonfeed/templates'],  
+        'DIRS': [BASE_DIR / 'nowonfeed/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
