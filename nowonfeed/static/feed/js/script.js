@@ -23,19 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(response => response.json())
                 .then(data => {
                     if (data.new_post) {
-                        const newTweet = document.createElement('div');
-                        newTweet.classList.add('tweet');
-                        newTweet.innerHTML = `
-                            <div class="tweet-content">
-                                <div class="tweet-header">
-                                    <strong>${data.username}</strong>
-                                </div>
-                                <p>${data.new_post}</p>
-                            </div>
-                        `;
-                        
-                        feedContainer.insertBefore(newTweet, feedContainer.firstChild);
-                        tweetInput.value = '';
+                        // Após enviar o tweet, recarregamos a página para mostrar o novo tweet
+                        location.reload(); // Isso vai recarregar a página
                     } else if (data.error) {
                         console.error('Error:', data.error);
                     }
