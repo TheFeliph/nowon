@@ -29,6 +29,11 @@ def login_view(request):
         
     return render(request, 'nowonfeed/login.html')
 
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+
+@csrf_exempt
 def nowonfeed_view(request):
     if not request.user.is_authenticated:
         return redirect('login')
@@ -37,14 +42,21 @@ def nowonfeed_view(request):
     posts = request.session.get('posts', [])
 
     if request.method == 'POST':
+        
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            content = request.POST.get('content')
+            if content:
+                posts.insert(0, content)
+                request.session['posts'] = posts
+                return JsonResponse({'new_post': content, 'username': request.user.username})
+            else:
+                return JsonResponse({'error': 'Invalid content'}, status=400)
+        
         form = PostForm(request.POST)
         if form.is_valid():
             new_post = form.cleaned_data['content']
             posts.insert(0, new_post)
             request.session['posts'] = posts
-            
-            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-                return JsonResponse({'new_post': new_post, 'username': request.user.username})
 
     return render(request, 'nowonfeed/feed.html', {'form': form, 'posts': posts})
 
