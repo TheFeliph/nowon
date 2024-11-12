@@ -160,6 +160,9 @@ typing-extensions==4.12.2 ; python_version >= "3.9" and python_version < "4.0" \
 tzdata==2024.2 ; python_version >= "3.9" and python_version < "4.0" and sys_platform == "win32" \
     --hash=sha256:7d85cc416e9382e69095b7bdf4afd9e3880418a2413feec7069d533d6b4e31cc \
     --hash=sha256:a48093786cdcde33cad18c2555e8532f34422074448fbc874186f0abd79565cd
+whitenoise==6.8.2 ; python_version >= "3.9" and python_version < "4.0" \
+    --hash=sha256:486bd7267a375fa9650b136daaec156ac572971acc8bf99add90817a530dd1d4 \
+    --hash=sha256:df12dce147a043d1956d81d288c6f0044147c6d2ab9726e5772ac50fb45d2280
 zope-interface==7.1.1 ; python_version >= "3.9" and python_version < "4.0" \
     --hash=sha256:0de23bcb93401994ea00bc5c677ef06d420340ac0a4e9c10d80e047b9ce5af3f \
     --hash=sha256:179ad46ece518c9084cb272e4a69d266b659f7f8f48e51706746c2d8a426433e \
