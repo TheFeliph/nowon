@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Cadastro</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'feed/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'feed/css/login.css' %}">
@@ -11,20 +11,13 @@
 <body>
 
     <div class="login-page">
-        <div class="login-banner">
-            <img src="{% static 'feed/images/topbanner.png' %}" alt="Banner de boas-vindas">
-        </div>
-    
         <div class="login-box">
-            <h2>Faça seu login</h2>
+            <h2>Crie uma conta</h2>
             <form method="POST">
                 {% csrf_token %}
-                <input type="text" name="username" placeholder="Usuário" required>
-                <input type="password" name="password" placeholder="Senha" required>
-                <button type="submit">Entrar</button>
+                {{ form.as_p }}
+                <button type="submit">Cadastrar</button>
             </form>
-            <p>Ainda não tem uma conta? <a href="{% url 'register' %}">Cadastre-se</a></p>
-
         </div>
     </div>
     

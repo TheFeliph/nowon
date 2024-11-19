@@ -1,3 +1,4 @@
+# views.py
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.shortcuts import redirect, render
 from django import forms
@@ -8,12 +9,16 @@ from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
 import git
 
+
+from .forms import CustomUserCreationForm  
+
 def run_migrations():
     call_command('migrate')
 
 run_migrations()
 
 User = get_user_model()
+
 if not User.objects.filter(username='user').exists():
     User.objects.create_user(username='user', password='user')
 
@@ -24,14 +29,26 @@ def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        
-        if username == 'user' and password == 'user':
-            user = authenticate(request, username=username, password=password)
-            if user:
-                login(request, user)
-                return redirect('nowonfeed')
-        
+
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('nowonfeed')  
+        else:
+            return render(request, 'nowonfeed/login.html', {'error': 'Credenciais inválidas'})
+
     return render(request, 'nowonfeed/login.html')
+
+def register_view(request):
+    if request.method == 'POST':
+
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()  
+            return redirect('login')  
+    else:
+        form = CustomUserCreationForm() 
+    return render(request, 'nowonfeed/register.html', {'form': form})
 
 @csrf_exempt
 def nowonfeed_view(request):
@@ -66,14 +83,8 @@ def logout_view(request):
 @csrf_exempt
 def update(request):
     if request.method == "POST":
-        '''
-        pass the path of the diectory where your project will be
-        stored on PythonAnywhere in the git.Repo() as parameter.
-        Here the name of my directory is "test.pythonanywhere.com"
-        '''
         repo = git.Repo('/home/piegez/nowon')
         origin = repo.remotes.origin
-
         origin.pull()
         return HttpResponse("Updated code on PythonAnywhere")
     else:
