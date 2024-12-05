@@ -52,7 +52,7 @@
     width: 100%;
     padding: 12px 10px;
     margin-bottom: 12px;
-    color: #FEA47F;
+    color: #7983e0;
     font-size: 16px;
     font-weight: 500;
     text-decoration: none;
@@ -65,7 +65,7 @@
 }
 
 .sidebar a:hover {
-    background-color: #FEA47F;
+    background-color: #ebe7e5;
     color: #2C3A47;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -98,7 +98,7 @@
 .tweet-box button {
     width: 100%;
     padding: 12px;
-    background-color: #FEA47F;
+    background-color: #6c5eee;
     color: white;
     border: none;
     border-radius: 4px;
@@ -108,7 +108,7 @@
 }
 
 .tweet-box button:hover {
-    background-color: #F97F51;
+    background-color: #1709e4;
 }
 
 .profile-pic {

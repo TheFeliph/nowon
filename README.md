@@ -13,7 +13,7 @@ Before you begin, ensure you have the following installed:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/piegez/nowon.git
+   git clone https://github.com/thefeliph/nowon.git
    cd nowon
    ```
 

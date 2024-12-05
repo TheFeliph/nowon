@@ -7,7 +7,11 @@
 body {
     font-family: 'Arial', sans-serif;
     background-color: #F5F8FA;
-    color: #14171A;
+    color:#000000;
     height: 100vh;
     display: block;
+}
+
+h1{
+    color: #6D214F;
 }
